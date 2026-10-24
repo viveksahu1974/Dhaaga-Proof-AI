@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#081c1b" />
+  <title>DhaagaProof AI | Fair work. Proven pay.</title>
+  <link rel="stylesheet" href="/style.css" />
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="identity"><div class="brand-mark">d<span>✳</span></div><div><strong>DhaagaProof<span class="accent">.</span></strong><small>AI for the hands that build Bharat</small></div></div>
+      <div class="caption nav-heading">WORKSPACE</div>
+      <nav class="navigation" aria-label="Primary navigation">
+        <button class="nav-item active" data-view="overview"><span>◈</span> Overview</button>
+        <button class="nav-item" data-view="orders"><span>▦</span> Orders & Quotes</button>
+        <button class="nav-item" data-view="workers"><span>◎</span> Member Studio</button>
+        <button class="nav-item" data-view="agent"><span>✳</span> Decision Agent</button>
+        <button class="nav-item" data-view="ledger"><span>≋</span> Trust Ledger</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="mission-box"><div class="eyebrow">THE MISSION</div><p>Not just more orders.<br><b>Fairer livelihoods.</b></p><div class="progress-ornament"><span></span><span></span><span></span><span></span><span></span></div></div>
+        <div class="sidebar-foot"><div class="avatar">DP</div><div><b>Sunrise SHG</b><small>Fictional demonstration</small></div><span class="dot-green"></span></div>
+      </div>
+    </aside>
+    <main class="main-area">
+      <header class="topbar">
+        <div><span class="breadcrumbs">WORKSPACE / <span id="crumb">OVERVIEW</span></span><h1 id="page-title">The work, made visible.</h1><p id="page-subtitle">A calmer way to manage production, promises and pay.</p></div>
+        <div class="top-actions"><span class="pill-status"><span class="dot-green"></span> LOCAL DEMO</span><a class="icon-btn" href="/api/export.csv" download="DhaagaProof-ledger.csv" title="Export CSV" aria-label="Download CSV">↓</a><button class="primary-btn" id="new-order-top">＋ New order</button></div>
+      </header>
+      <div class="demo-disclaimer"><span>ⓘ</span> Fictional people, sample data, simulated actions. No payment transfers. Experimental decision support, not a production financial system.</div>
+      <section class="view visible" id="view-overview"><div class="loading">Loading orders and member records…</div></section>
+      <section class="view" id="view-orders"></section>
+      <section class="view" id="view-workers"></section>
+      <section class="view" id="view-agent"></section>
+      <section class="view" id="view-ledger"></section>
+      <footer class="footer">DHAAGAPROOF AI / PROTOTYPE 01 <span>Built for Tech4Bharat 2026 · Human approval by design</span></footer>
+    </main>
+  </div>
+
+  <dialog id="order-dialog" class="modal">
+    <form id="new-order-form" class="dialog-content">
+      <div class="dialog-head"><div><div class="eyebrow">A NEW PROMISE</div><h2>Create a production order</h2><p>Every order starts with clear numbers, not guesswork.</p></div><button type="button" class="close-btn" data-close="order-dialog" aria-label="Close">×</button></div>
+      <div class="form-grid">
+        <label>Buyer / customer<input name="buyer" required maxlength="100" placeholder="e.g. Saheli Collective" /></label>
+        <label>Product name<input name="product" required maxlength="140" placeholder="e.g. Cotton bags" /></label>
+        <label>Product category<select name="category"><option value="garments">Garments</option><option value="food">Food products</option><option value="craft">Handmade crafts</option></select></label>
+        <label>Quantity (units)<input name="quantity" type="number" required min="1" max="5000" value="180" /></label>
+        <label>Buyer price (₹/unit)<input name="buyer_price_per_unit" type="number" min="0" step="0.01" value="160" required /></label>
+        <label>Materials (₹/unit)<input name="material_per_unit" type="number" min="0" step="0.01" value="68" required /></label>
+        <label>Labour rate (₹/hour)<input name="labour_rate_hour" type="number" min="0" step="0.01" value="75" required /></label>
+        <label>Work time (minutes/unit)<input name="minutes_per_unit" type="number" min="1" max="1440" step="0.5" value="25" required /></label>
+        <label>Overheads (₹/unit)<input name="overhead_per_unit" type="number" min="0" step="0.01" value="8" required /></label>
+        <label>Target profit margin (%)<input name="target_margin_pct" type="number" min="0" max="89" step="1" value="20" required /></label>
+        <label>Delivery deadline<input name="due_date" id="new-due" type="date" required /></label>
+      </div>
+      <div class="dialog-actions"><button type="button" class="secondary-btn" data-close="order-dialog">Cancel</button><button class="primary-btn" type="submit">Create draft order →</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="plan-dialog" class="modal wide-modal"><div class="dialog-content"><div class="dialog-head"><div><div class="eyebrow">DECISION / HUMAN-IN-THE-LOOP</div><h2>Review fair-work allocation</h2><p>Distribution is a proposal until you approve it.</p></div><button type="button" class="close-btn" data-close="plan-dialog" aria-label="Close">×</button></div><div id="plan-content"></div><div class="dialog-actions"><button type="button" class="secondary-btn" data-close="plan-dialog">Keep as draft</button><button type="button" class="primary-btn" id="approve-plan">✓ Approve assignments</button></div></div></dialog>
+  <dialog id="payout-dialog" class="modal wide-modal"><div class="dialog-content"><div class="dialog-head"><div><div class="eyebrow">THE FAIR PAY MOMENT</div><h2>Review payout ledger</h2><p>Approving here NEVER sends money. It only records agreed payables.</p></div><button type="button" class="close-btn" data-close="payout-dialog" aria-label="Close">×</button></div><div id="payout-content"></div><div class="dialog-actions"><button type="button" class="secondary-btn" data-close="payout-dialog">Not yet</button><button type="button" class="primary-btn" id="approve-payout">✓ Group approves ledger</button></div></div></dialog>
+  <dialog id="progress-dialog" class="modal"><form id="progress-form" class="dialog-content"><div class="dialog-head"><div><div class="eyebrow">PROOF OF WORK</div><h2>Record production and quality</h2><p id="progress-desc">Add units produced and accepted by human inspection.</p></div><button type="button" class="close-btn" data-close="progress-dialog">×</button></div><input id="progress-assignment-id" type="hidden" /><div class="form-grid"><label>Newly produced units<input type="number" id="produced-increment" min="1" step="1" required value="1" /></label><label>Accepted after review<input type="number" id="accepted-increment" min="0" step="1" required value="1" /></label></div><div class="section-blurb" style="margin-top:17px">Human quality inspection is required. The system never automatically labels a handmade piece defective.</div><div class="dialog-actions"><button type="button" class="secondary-btn" data-close="progress-dialog">Cancel</button><button type="submit" class="primary-btn">✓ Save checked work</button></div></form></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
