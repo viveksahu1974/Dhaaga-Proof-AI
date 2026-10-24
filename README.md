@@ -1,5 +1,13 @@
 # DHAAGAPROOF AI
 
+## 🌐 Portfolio interactive browser demo
+
+**[▶ Open DhaagaProof AI interactive browser demo](https://viveksahu1974.github.io/portfolio/dhaagaproof-demo/)**
+
+This hosted version uses the project's original dashboard styling and a **JavaScript, in-memory simulator** of its Python endpoints. You can explore orders, price quotes, capacity-aware proposed assignments, member consent, human-reviewed piece acceptance, simulated wage-ledger approvals, and explainable action proposals. All names and numbers are fictional, changes reset on page reload, and **no real payments, messages, database writes, Ollama model or backend AI inference occur**.
+
+For the original full **Python + SQLite** prototype, continue to run `python app.py` on your own computer as described below. The live browser simulation must not be represented as a full hosted version of the backend.
+
 **Every order has a deadline. Every worker deserves proof of fair pay.**
 
 An original prototype *implementation* for Tech4Bharat / GAVS 2026, mapped to official **Challenge 8.1: Women's self-help group (SHG) order fulfilment and pay** (Agentic AI track).
